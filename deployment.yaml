@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-streaming-app
+  name: twc-filter-stream-app
 spec:
   selector:
     matchLabels:
@@ -15,7 +15,7 @@ spec:
         - name: iot-pull-secret
       containers:
       - name: kafka-stream
-        image: registry.iot.fh-joanneum.at/word-counter-demo:latest
+        image: registry.iot.fh-joanneum.at/twc-filter-stream-app-latest
         resources:
           limits:
             memory: "500Mi"
