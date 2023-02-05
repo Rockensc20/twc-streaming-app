@@ -105,10 +105,11 @@ object Main extends App {
   }
 
   println("Starting...")
+  twcRaw.map((k,v)=> dumpKVwPrint(k,v))
   val filteredTwcData: KStream[String, String] = twcRaw.map((a,b)=> cleanRawData(a,b))
 
   //Send clean output to new kafka topic                                         
-  filteredTwcData.map((k,v)=>(k,v.toString())).to("twc-values-streamapp")
+  filteredTwcData.map((k,v)=>("\"IMA20/Sensors/02/filtered\"",v.toString())).to("twc-values-filtered")
 
 
   val streams: KafkaStreams = new KafkaStreams(builder.build(), config)
